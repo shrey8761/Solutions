@@ -1,3 +1,3 @@
 class Solution:
-    def bulbSwitch(self, n: int) -> int:
-        return int(n**(1/2))
+    def bulbSwitch(self, a: int) -> int:
+        return int(a**(1/2))
