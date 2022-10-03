@@ -1,13 +1,24 @@
-class Solution:
-    def minCost(self, colors: str, neededTime: List[int]) -> int:
-        result, max_time = 0, 0
-        
-        for i in range(len(colors)-1):
-            if colors[i] == colors[i+1]:
-                if neededTime[i] > neededTime[i+1]: 
-                    result += neededTime[i+1]
-                    neededTime[i+1] = neededTime[i]
-                else:
-                    result += neededTime[i]
-
-        return result
+class Solution
+{
+    public:
+        int minCost(string colors, vector<int> &neededTime)
+        {
+            int mx = neededTime[0];
+            int res = 0, cursum = neededTime[0];
+            for (int i = 1; i < colors.size(); i++)
+            {
+                if (colors[i] == colors[i - 1])
+                {
+                    cursum += neededTime[i];
+                    mx = max(mx, neededTime[i]);
+                }
+                else
+                {
+                    res += cursum - mx;
+                    cursum = mx = neededTime[i];
+                }
+            }
+            res += cursum - mx;
+            return res;
+        }
+};
