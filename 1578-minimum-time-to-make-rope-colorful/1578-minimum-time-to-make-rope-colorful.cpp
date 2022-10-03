@@ -1,17 +1,24 @@
-class Solution {
-    public int minCost(String colors, int[] neededTime) {
-        int n= colors.length(),gsum = 0, gmax = 0, ans = 0;
-        
-        for(int i = 0; i<n; i++){
-            if(i>0 && colors.charAt(i) != colors.charAt(i - 1)){
-                ans += gsum - gmax;
-                gsum = 0;
-                gmax = 0;
+class Solution
+{
+    public:
+        int minCost(string colors, vector<int> &neededTime)
+        {
+            int mx = neededTime[0];
+            int res = 0, cursum = neededTime[0];
+            for (int i = 1; i < colors.size(); i++)
+            {
+                if (colors[i] == colors[i - 1])
+                {
+                    cursum += neededTime[i];
+                    mx = max(mx, neededTime[i]);
+                }
+                else
+                {
+                    res += cursum - mx;
+                    cursum = mx = neededTime[i];
+                }
             }
-            gsum += neededTime[i];
-            gmax = Math.max(gmax, neededTime[i]);
+            res += cursum - mx;
+            return res;
         }
-        ans += gsum - gmax;
-        return ans;
-    }
-}
+};
