@@ -1,12 +1,13 @@
 class Solution:
     def minDeletionSize(self, strs: List[str]) -> int:
-        s_len = len(strs[0])
+        n = len(strs[0])
+        m = len(strs)
         ans = 0
-        for i in range(s_len):
-            n_s = ""
-            for s in strs:
-                n_s = n_s + s[i]
-            #print(sorted(n_s))
-            if n_s != "".join(sorted(n_s)):
-                ans += 1
+        for i in range(n):
+            for j in range(1,m):
+                if strs[j][i] <  strs[j-1][i]:
+                    # print(strs[j][i])
+                    ans+=1
+                    break
         return ans
+        
