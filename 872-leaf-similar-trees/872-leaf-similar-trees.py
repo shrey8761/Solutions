@@ -4,28 +4,56 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+# class Solution:
+#   def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
+#     # Create two lists to store the leaf values of each tree
+#     leaves1 = []
+#     leaves2 = []
+
+#     # Perform a depth-first search on each tree to get the leaf values
+#     self.dfs(root1, leaves1)
+#     self.dfs(root2, leaves2)
+
+#     # Compare the two lists of leaf values
+#     return leaves1 == leaves2
+
+#   def dfs(self, node: Optional[TreeNode], leaves: List[int]):
+#     # If the node is null, return
+#     if node is None:
+#       return
+
+#     # If the node is a leaf, add its value to the list of leaves
+#     if node.left is None and node.right is None:
+#       leaves.append(node.val)
+
+#     # Recursively traverse the left and right subtrees
+#     self.dfs(node.left, leaves)
+#     self.dfs(node.right, leaves)
+    
+    
 class Solution:
-  def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
-    # Create two lists to store the leaf values of each tree
-    leaves1 = []
-    leaves2 = []
+    def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
+        list1 = []
+        list2 = []
+        
+        def dfs(root,lyst):
+            if not root:
+                return False
 
-    # Perform a depth-first search on each tree to get the leaf values
-    self.dfs(root1, leaves1)
-    self.dfs(root2, leaves2)
-
-    # Compare the two lists of leaf values
-    return leaves1 == leaves2
-
-  def dfs(self, node: Optional[TreeNode], leaves: List[int]):
-    # If the node is null, return
-    if node is None:
-      return
-
-    # If the node is a leaf, add its value to the list of leaves
-    if node.left is None and node.right is None:
-      leaves.append(node.val)
-
-    # Recursively traverse the left and right subtrees
-    self.dfs(node.left, leaves)
-    self.dfs(node.right, leaves)
+            
+            if not root.left and not root.right:
+                lyst.append(root.val)
+            
+            dfs(root.left,lyst)
+            dfs(root.right,lyst)
+        
+        dfs(root1,list1)
+        dfs(root2,list2)
+        
+        print(list1)   
+        print(list2)
+        return list1==list2
+    
+    
+    
+    
