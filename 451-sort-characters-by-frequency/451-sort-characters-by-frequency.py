@@ -1,13 +1,20 @@
+# class Solution:
+#     def frequencySort(self, s: str) -> str:
+#         out = ''
+#         for i, j in Counter(s).most_common():
+#             out += i*j
+
+#         return out
+
+
+
+
 class Solution:
     def frequencySort(self, s: str) -> str:
-        cnt = Counter(s)
-        n = len(s)
-        bucket = [[] for _ in range(n+1)]
-        for c, freq in cnt.items():
-            bucket[freq].append(c)
+        c = Counter(s)
+        d = c.most_common()
         
-        ans = []
-        for freq in range(n, -1, -1):
-            for c in bucket[freq]:
-                ans.append(c * freq)
-        return "".join(ans)
+        temp = ''
+        for i,j in d:
+            temp += i*j
+        return temp
